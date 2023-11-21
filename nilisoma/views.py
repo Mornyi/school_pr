@@ -3,19 +3,19 @@ from .forms import RecordForm
 from django.shortcuts import render, redirect
 
 def dashboard(request):
-    if request.method == "POST":
-        form = RecordForm(request.POST or None)
+    form = RecordForm(request.POST or None)
+    if request.method == "POST": 
         if form.is_valid():
             record = form.save(commit=False)
             record.user = request.user
             record.save()
-            return redirect("dwitter:dashboard")
+            return redirect("nilisoma:dashboard")
         
-        followed_records = Record.objects.filter(
+    followed_records = Record.objects.filter(
         user__profile__in=request.user.profile.follows.all()
     ).order_by("-created_at")
         
-    return render(request, "nilisoma/dashboard.html", {"form": form, "dweets": followed_records},)
+    return render(request, "nilisoma/dashboard.html", {"form": form, "records": followed_records},)
 
 
 def profile_list(request):
