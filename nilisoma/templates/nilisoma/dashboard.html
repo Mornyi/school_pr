@@ -7,7 +7,7 @@
         <div class="box">
             {{record.body}}
             <span class="is-small has-text-grey-light">
-                ({{ record.created_at }} от {{ record.user.username }}
+                ({{ record.created_at }}) от {{ record.user.username }}
             </span>
         </div>
     {% endfor %} 
@@ -47,16 +47,5 @@
     </div>
 
 </div>
-
-<!-- {% for followed in user.profile.follows.all %}
-        {% for record in followed.user.records.all %}
-            <div class="box">
-                {{record.body}}
-                <span class="is-small has-text-grey-light">
-                    ({{ record.created_at }} by {{ record.user.username }}
-                </span>
-            </div>
-        {% endfor %}
-    {% endfor %} -->
 
 {% endblock content %}

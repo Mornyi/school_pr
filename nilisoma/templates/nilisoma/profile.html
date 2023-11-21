@@ -16,12 +16,14 @@
     <form method="post">
         {% csrf_token %}
         <div class="buttons has-addons">
-            {% if profile in user.profile.follows.all %}
-                <button class="button is-success is-static">Отслеживать</button>
-                <button class="button is-danger" name="follow" value="unfollow">Отписаться</button>
-            {% else %}
-                <button class="button is-success" name="follow" value="follow">Отслеживать</button>
-                <button class="button is-danger is-static">Отписаться</button>
+            {% if profile != user.profile %}
+                {% if profile in user.profile.follows.all %}
+                    <button class="button is-success is-static">Отслеживать</button>
+                    <button class="button is-danger" name="follow" value="unfollow">Отписаться</button>
+                {% else %}
+                    <button class="button is-success" name="follow" value="follow">Отслеживать</button>
+                    <button class="button is-danger is-static">Отписаться</button>
+                {% endif %}
             {% endif %}
         </div>
     </form>

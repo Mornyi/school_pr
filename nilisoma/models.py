@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.utils import timezone
 from django.dispatch import receiver
 
 class Profile(models.Model):
@@ -21,6 +22,8 @@ def create_profile(sender, instance, created, **kwargs):
         user_profile.save()
         user_profile.follows.set([instance.profile.id])
         user_profile.save()
+
+tz = timezone.get_default_timezone()
 
 class Record(models.Model):
     user = models.ForeignKey(
