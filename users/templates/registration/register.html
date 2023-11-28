@@ -1,10 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Регистрация</h2>
-  <form method="post" action="{% url 'users:register' %}">
+<div style="max-width: 400px; width: 100%; padding: 20px; border: 1px solid #ccc; text-align: center; margin-left:450px">
+  <form method="post" action="{% url 'users:login' %}" style="margin: 0 auto;">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
+    <table style="margin: 0 auto;">
+      {% for field in form %}
+      <tr>
+        <td style="text-align: center;">
+          {% if field.name == 'username' %}
+            Логин:&nbsp;&nbsp;
+          {% elif field.name == 'password1' %}
+            Пароль:&nbsp;&nbsp;
+          {% else %}
+            Повторите пароль:&nbsp;&nbsp;
+          {% endif %}
+          
+        </td>
+        <td style="margin-left: 10px;">
+          {{ field }}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <button type="submit" style="margin-top: 10px;">Зарегистрироваться</button>
+   
   </form>
+</div>
 {% endblock %}

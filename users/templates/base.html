@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <title>Nilisoma</title>
+
 </head>
 
 <body>
@@ -18,18 +20,14 @@
                 Социальная сеть построенная с помощью Django. 
                 {% if user.is_authenticated %}
                 <!-- Если пользователь аутентифицирован, показываем кнопку выхода -->
-                    <a href="{% url 'logout' %}">Выйти</a>
+                    <a href="{% url 'users:logout' %}">Выйти</a>
                 {% endif %}
             </p>
         </div>
     </section>
     </a>
-    <div class="container">
-        <div class="columns">
         {% block content %}
 
         {% endblock content %}
-        </div>
-    </div>
 </body>
 </html>
