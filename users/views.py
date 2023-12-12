@@ -8,11 +8,9 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user.is_staff = True
-            user.is_superuser = True
             user.save()
             login(request, user)
-            return redirect('login')  # Замените 'home' на URL вашей главной страницы
+            return redirect('user:login')
     else:
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})

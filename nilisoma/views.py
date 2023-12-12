@@ -9,7 +9,7 @@ def dashboard(request):
     if request.method == "POST": 
         if form.is_valid():
             record = form.save(commit=False)
-            # record.user = request.user
+            record.user = request.user
             record.save()
             return redirect("nilisoma:dashboard")
     followed_records = Record.objects.filter(
